@@ -74,7 +74,7 @@ public class CharsetDetector {
      * @throws IOException
      */
     public String detect(String path) throws IOException {
-        return detect(detect(new File(path)));
+        return detect(new File(path));
     }
 
     /**
