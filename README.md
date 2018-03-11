@@ -12,7 +12,11 @@ a useful tool to detect charset. You will not regret!
 <dependency>
     <groupId>top.shareall</groupId>
     <artifactId>charset-detector</artifactId>
-    <version>1.0</version>
+    <version>1.0-pre</version>
 </dependency>
 ```
 
+
+## contribution
+Just fork it and create pull request!
+If it helps you. Please start it!
