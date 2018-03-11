@@ -50,10 +50,7 @@ import java.io.*;
  *
  * @author liujichun
  */
-public class CharsetDetector {
-
-    private boolean found = false;
-    private String charset = "";
+public final class CharsetDetector {
 
     /**
      * 探测字符串内容字符集
@@ -62,7 +59,7 @@ public class CharsetDetector {
      * @return 返回对应的字符集
      * @throws IOException
      */
-    public String detectStr(String content) throws IOException {
+    public static String detectStr(String content) throws IOException {
         return detect(new ByteArrayInputStream(content.getBytes()));
     }
 
@@ -73,7 +70,7 @@ public class CharsetDetector {
      * @return
      * @throws IOException
      */
-    public String detect(String path) throws IOException {
+    public static String detect(String path) throws IOException {
         return detect(new File(path));
     }
 
@@ -84,7 +81,7 @@ public class CharsetDetector {
      * @return
      * @throws IOException
      */
-    public String detect(File file) throws IOException {
+    public static String detect(File file) throws IOException {
         try (FileInputStream stream = new FileInputStream(file)) {
             return detect(stream);
         }
@@ -96,12 +93,14 @@ public class CharsetDetector {
      * @return
      * @throws Exception
      */
-    public String detect(InputStream inputStream) throws IOException {
+    public static String detect(InputStream inputStream) throws IOException {
         int lang = nsPSMDetector.ALL;
+        final boolean[] found = {false};
+        final String[] charset = new String[1];
         nsDetector det = new nsDetector(lang);
         det.Init(a -> {
-            found = true;
-            charset = a;
+            found[0] = true;
+            charset[0] = a;
         });
 
         byte[] buf = new byte[1024];
@@ -118,14 +117,14 @@ public class CharsetDetector {
         det.DataEnd();
 
         if (isAscii) {
-            charset = "ASCII";
-            found = true;
+            charset[0] = "ASCII";
+            found[0] = true;
         }
 
-        if (!found) {
+        if (!found[0]) {
             String prob[] = det.getProbableCharsets();
-            charset = prob[0];
+            charset[0] = prob[0];
         }
-        return charset;
+        return charset[0];
     }
 }
