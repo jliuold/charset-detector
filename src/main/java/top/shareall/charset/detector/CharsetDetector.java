@@ -46,17 +46,19 @@ import top.shareall.charset.detector.jchardet.nsPSMDetector;
 import java.io.*;
 
 /**
- * 探测流对象
+ * 字符集探测器
+ * A Charset Detector from jchardet
  *
  * @author liujichun
  */
 public final class CharsetDetector {
 
     /**
+     * Detector string content character set
      * 探测字符串内容字符集
      *
      * @param content 字符串内容
-     * @return 返回对应的字符集
+     * @return the charset 返回对应的字符集
      * @throws IOException
      */
     public static String detectStr(String content) throws IOException {
@@ -64,9 +66,11 @@ public final class CharsetDetector {
     }
 
     /**
+     * Detecting a file content character set based on a file path
      * 依据文件路径探测文件内容字符集
      *
-     * @param path
+     * @param path the path of file
+     *             文件路径
      * @return
      * @throws IOException
      */
@@ -90,8 +94,9 @@ public final class CharsetDetector {
     /**
      * 探测流内容字符集内容
      *
+     * @param inputStream
      * @return
-     * @throws Exception
+     * @throws IOException
      */
     public static String detect(InputStream inputStream) throws IOException {
         int lang = nsPSMDetector.ALL;

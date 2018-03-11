@@ -6,8 +6,8 @@
 
     <groupId>top.shareall</groupId>
     <artifactId>charset-detector</artifactId>
-    <version>1.0</version>
-    <description>A cherset detector from jchardet</description>
+    <version>1.0-pre</version>
+    <description>A charset detector from jchardet</description>
     <properties>
         <encoding>UTF-8</encoding>
     </properties>
