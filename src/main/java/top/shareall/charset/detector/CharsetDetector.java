@@ -59,7 +59,6 @@ public final class CharsetDetector {
      *
      * @param content 字符串内容
      * @return the charset 返回对应的字符集
-     * @throws IOException
      */
     public static String detectStr(String content) throws IOException {
         return detect(new ByteArrayInputStream(content.getBytes()));
@@ -71,8 +70,6 @@ public final class CharsetDetector {
      *
      * @param path the path of file
      *             文件路径
-     * @return
-     * @throws IOException
      */
     public static String detect(String path) throws IOException {
         return detect(new File(path));
@@ -80,10 +77,6 @@ public final class CharsetDetector {
 
     /**
      * 探测文件内容字符集
-     *
-     * @param file
-     * @return
-     * @throws IOException
      */
     public static String detect(File file) throws IOException {
         try (FileInputStream stream = new FileInputStream(file)) {
@@ -93,10 +86,6 @@ public final class CharsetDetector {
 
     /**
      * 探测流内容字符集内容
-     *
-     * @param inputStream
-     * @return
-     * @throws IOException
      */
     public static String detect(InputStream inputStream) throws IOException {
         int lang = nsPSMDetector.ALL;
